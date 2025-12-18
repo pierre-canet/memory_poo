@@ -7,7 +7,7 @@ class Game
     {
         $this->pairs = $pairs;
     }
-    public function getForce(): int
+    public function getPairs(): int
     {
         return $this->pairs;
     }

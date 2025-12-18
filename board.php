@@ -10,11 +10,11 @@
 <body>
     <form method="post" class='game-board'>
         <?php
-        require_once 'Card.php';
         session_start();
+        require_once 'Card.php';
         if (!isset($_SESSION['deck'])) {
             $deck = [];
-            $pairs = 2;
+            $pairs = $_SESSION['pairs'];
             for ($i = 1; $i <= $pairs; $i++) {
                 $imagePath = "./assets/card" . $i . ".png";
                 $deck[] = new Card($i * 2 - 1, $imagePath);

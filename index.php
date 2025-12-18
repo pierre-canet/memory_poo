@@ -1,5 +1,13 @@
 <?php
+session_start();
 require_once 'Game.php';
+if (isset($_POST['pair-select'])) {
+    unset($_SESSION['deck']);
+    unset($_SESSION['turn']);
+    $_SESSION['pairs'] = $_POST['pair-select'];
+    header('Location: board.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,14 +25,14 @@ require_once 'Game.php';
         <h3>Introduction</h3>
         <p>Ici vous pourrez jouer à un jeu de Memory dont vous pourrez sélectionner la difficulté !</p>
     </div>
-    <form action="board.php">
+    <form method="POST" action="index.php">
         <div class="form-group"></div>
         <label for="pair-select">Choisissez votre nombre de paires</label>
         <select name="pair-select" id="">
-            <option value="">Selectionnez un nombre</option>
-            <option value="">3 paires</option>
-            <option value="">6 paires</option>
-            <option value="">8 paires</option>
+            <option value="3">3 paires</option>
+            <option value="6">6 paires</option>
+            <option value="9">9 paires</option>
+            <option value="12">12 paires</option>
         </select>
         <button type="submit">Jouer !</button>
     </form>
