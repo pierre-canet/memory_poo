@@ -14,7 +14,7 @@
         session_start();
         if (!isset($_SESSION['deck'])) {
             $deck = [];
-            $pairs = 8;
+            $pairs = 2;
             for ($i = 1; $i <= $pairs; $i++) {
                 $imagePath = "./assets/card" . $i . ".png";
                 $deck[] = new Card($i * 2 - 1, $imagePath);
