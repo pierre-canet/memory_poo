@@ -33,6 +33,23 @@ class Game
 
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
+    public function get_ranking_by_pairs($pair_amount)
+    {
+        $stmt = mysqli_prepare(
+            $this->connexion,
+            "SELECT r.*, u.username
+         FROM `rank` r
+         JOIN users u ON u.id = r.user_id
+         WHERE r.pair_amount = ?
+         ORDER BY r.move_amount ASC, r.win_date ASC"
+        );
+
+        mysqli_stmt_bind_param($stmt, "i", $pair_amount);
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
     public function get_scores_by_user($user_id)
     {
         $stmt = mysqli_prepare(
@@ -46,7 +63,7 @@ class Game
         $result = mysqli_stmt_get_result($stmt);
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
-    public function saveScore($user_id, $pair_amount, $move_amount)
+    public function save_score($user_id, $pair_amount, $move_amount)
     {
 
         $stmt = mysqli_prepare(

@@ -64,14 +64,18 @@
         }
 
         if ($allMatched) {
-            echo "<div><h2>Félicitations ! Vous avez gagné !</h2><button type='submit' class='restart'>Recommencer</button><a href='index.php'>Retour au menu</a></div>";
+            echo "<div>
+            <h2>Félicitations ! Vous avez gagné !</h2>
+            <button type='submit' class='restart'>Recommencer</button>
+            <a href='index.php'>Retour au menu</a>
+            </div>";
             if (isset($_SESSION['user_id'])) {
                 $game = new Game();
                 $user_id = $_SESSION['user_id'];
                 $move_amount = isset($_SESSION['move_count']) ? $_SESSION['move_count'] : 0;
                 $pair_amount = $_SESSION['pairs'];
 
-                $game->saveScore($user_id, $pair_amount, $move_amount);
+                $game->save_score($user_id, $pair_amount, $move_amount);
             }
 
             unset($_SESSION['deck']);
