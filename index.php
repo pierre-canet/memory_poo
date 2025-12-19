@@ -18,6 +18,15 @@ if (isset($_POST['pair-select'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
 </head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.php">Accueil</a></li>
+            <li><a href="register.php">Inscription</a></li>
+            <li><a href="login.php">Connexion</a></li>
+        </ul>
+    </nav>
+</header>
 
 <body>
     <h1>Bienvenue !</h1>
@@ -25,7 +34,7 @@ if (isset($_POST['pair-select'])) {
         <h3>Introduction</h3>
         <p>Ici vous pourrez jouer à un jeu de Memory dont vous pourrez sélectionner la difficulté !</p>
     </div>
-    <form method="POST" action="index.php">
+    <form method="POST">
         <div class="form-group"></div>
         <label for="pair-select">Choisissez votre nombre de paires</label>
         <select name="pair-select" id="">
