@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
         exit();
     } else {
         $user = new User();
-        $existing_user = $user->searchUserByUsername($username);
+        $existing_user = $user->search_user_by_username($username);
 
         if ($existing_user) {
             set_flash('error', 'Ce pseudo est déjà utilisé.');

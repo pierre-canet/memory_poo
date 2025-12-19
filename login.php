@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
         exit();
     } else {
         $user = new User();
-        $existing_user = $user->searchUserByUsername($username);
+        $existing_user = $user->search_user_by_username($username);
 
         if (!$existing_user || !password_verify($password, $existing_user['password'])) {
             set_flash('error', 'Identifiants incorrects.');

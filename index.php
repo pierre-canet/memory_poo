@@ -30,6 +30,10 @@ if (isset($_POST['pair-select'])) {
                 <li><a href="register.php">Inscription</a></li>
                 <li><a href="login.php">Connexion</a></li>
             <?php endif ?>
+
+            <?php if (isset($_SESSION['deck'])) : ?>
+                <li><a href="board.php">Continuer votre partie</a></li>
+            <?php endif ?>
         </ul>
     </nav>
 </header>

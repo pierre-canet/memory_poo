@@ -17,7 +17,7 @@ class User
         }
     }
 
-    public function searchUserByUsername($username)
+    public function search_user_by_username($username)
     {
         $stmt = mysqli_prepare(
             $this->connexion,
