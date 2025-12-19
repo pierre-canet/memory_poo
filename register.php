@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
         } else {
             $create_user = $user->createUser($username, $password);
             set_flash('success', 'Inscription validée 🎉');
-            header('Location: register.php');
+            header('Location: login.php');
             exit();
         }
     }

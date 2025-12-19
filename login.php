@@ -9,6 +9,26 @@ function set_flash($type, $message)
 if (isset($_POST['submit'])) {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
+    if (empty($username) || empty($password)) {
+        set_flash('error', 'Pseudonyme et mot de passe obligatoires.');
+        header('Location: login.php');
+        exit();
+    } else {
+        $user = new User();
+        $existing_user = $user->searchUserByUsername($username);
+
+        if (!$existing_user || !password_verify($password, $existing_user['password'])) {
+            set_flash('error', 'Identifiants incorrects.');
+            header('Location: login.php');
+            exit();
+        } else {
+            $_SESSION['user_id'] = $existing_user['id'];
+            $_SESSION['username'] = $existing_user['username'];
+            set_flash('success', 'Connexion validée 🎉');
+            header('Location: index.php');
+            exit();
+        }
+    }
 };
 ?>
 <!DOCTYPE html>
@@ -21,6 +41,9 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
+    <?php if (!empty($_SESSION['flash_message'])) : ?>
+        <?php echo $_SESSION['flash-message'] ?>
+    <?php endif ?>
     <form method="POST">
         <div class="form-group">
             <label for="username">Votre pseudo</label>

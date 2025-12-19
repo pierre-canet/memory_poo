@@ -41,5 +41,10 @@ class User
         mysqli_stmt_bind_param($stmt, "ss", $username, $hashed_password);
         return mysqli_stmt_execute($stmt);
     }
-    public function connectUser($username) {}
+    public function logout()
+    {
+        unset($_SESSION['username']);
+        unset($_SESSION['id']);
+        session_destroy();
+    }
 }
