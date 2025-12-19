@@ -1,3 +1,8 @@
+<?php require_once 'Card.php';
+require_once 'User.php';
+require_once 'Game.php';
+session_start(); ?>
+
 <html lang='fr'>
 
 <head>
@@ -6,14 +11,30 @@
     <title>Jeu de Mémoire</title>
     <link rel='stylesheet' href='./style.css'>
 </head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.php">Accueil</a></li>
+            <li><a href="ranking.php">Classements</a></li>
+            <?php if (isset($_SESSION['user_id'])) : ?>
+                <li>Bonjour <?= htmlspecialchars($_SESSION['username']) ?></li>
+                <li><a href="logout.php">Déconnexion</a></li>
+            <?php else : ?>
+                <li><a href="register.php">Inscription</a></li>
+                <li><a href="login.php">Connexion</a></li>
+            <?php endif ?>
+
+            <?php if (isset($_SESSION['deck'])) : ?>
+                <li><a href="board.php">Continuer votre partie</a></li>
+            <?php endif ?>
+        </ul>
+    </nav>
+</header>
 
 <body>
     <form method="post" class='game-board'>
         <?php
-        require_once 'Card.php';
-        require_once 'User.php';
-        require_once 'Game.php';
-        session_start();
+
         if (!isset($_SESSION['deck'])) {
             $deck = [];
             $pairs = $_SESSION['pairs'];

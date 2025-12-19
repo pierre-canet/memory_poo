@@ -39,6 +39,25 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
 </head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.php">Accueil</a></li>
+            <li><a href="ranking.php">Classements</a></li>
+            <?php if (isset($_SESSION['user_id'])) : ?>
+                <li>Bonjour <?= htmlspecialchars($_SESSION['username']) ?></li>
+                <li><a href="logout.php">Déconnexion</a></li>
+            <?php else : ?>
+                <li><a href="register.php">Inscription</a></li>
+                <li><a href="login.php">Connexion</a></li>
+            <?php endif ?>
+
+            <?php if (isset($_SESSION['deck'])) : ?>
+                <li><a href="board.php">Continuer votre partie</a></li>
+            <?php endif ?>
+        </ul>
+    </nav>
+</header>
 
 <body>
     <?php if (!empty($_SESSION['flash_message'])) : ?>

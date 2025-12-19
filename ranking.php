@@ -15,6 +15,25 @@ $scores = $game->get_ranking_by_pairs($pair_amount);
     <link rel='stylesheet' href='./style.css'>
     <title>Classements</title>
 </head>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.php">Accueil</a></li>
+            <li><a href="ranking.php">Classements</a></li>
+            <?php if (isset($_SESSION['user_id'])) : ?>
+                <li>Bonjour <?= htmlspecialchars($_SESSION['username']) ?></li>
+                <li><a href="logout.php">Déconnexion</a></li>
+            <?php else : ?>
+                <li><a href="register.php">Inscription</a></li>
+                <li><a href="login.php">Connexion</a></li>
+            <?php endif ?>
+
+            <?php if (isset($_SESSION['deck'])) : ?>
+                <li><a href="board.php">Continuer votre partie</a></li>
+            <?php endif ?>
+        </ul>
+    </nav>
+</header>
 
 <body>
     <h1>Le classement de nos meilleurs champions !</h1>
