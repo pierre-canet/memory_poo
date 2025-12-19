@@ -22,7 +22,7 @@ if (isset($_POST['pair-select'])) {
     <nav>
         <ul>
             <li><a href="index.php">Accueil</a></li>
-
+            <li><a href="ranking.php">Classements</a></li>
             <?php if (isset($_SESSION['user_id'])) : ?>
                 <li>Bonjour <?= htmlspecialchars($_SESSION['username']) ?></li>
                 <li><a href="logout.php">Déconnexion</a></li>
