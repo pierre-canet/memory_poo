@@ -114,10 +114,8 @@ session_start(); ?>
         <?php if ($allMatched) : ?>
             <div>
                 <h2>Félicitations ! Vous avez gagné !</h2>
-                <button type='submit' class='restart'>Recommencer</button>
-                <a href='index.php'>Retour au menu</a>
-                <p><?php echo $_SESSION['pairs'] ?> paires</p>
-                <p>en <?php echo $move_amount ?> coups</p>
+                <p><?php echo $_SESSION['pairs'] ?> paires en <?php echo $move_amount ?> coups</p>
+                <button type='submit' class='restart'>Recommencer</button><a href='index.php'>Retour au menu</a>
             </div>
         <?php endif ?>
     </form>
