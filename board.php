@@ -23,10 +23,6 @@ session_start(); ?>
                 <li><a href="register.php">Inscription</a></li>
                 <li><a href="login.php">Connexion</a></li>
             <?php endif ?>
-
-            <?php if (isset($_SESSION['deck'])) : ?>
-                <li><a href="board.php">Continuer votre partie</a></li>
-            <?php endif ?>
         </ul>
     </nav>
 </header>
@@ -85,15 +81,11 @@ session_start(); ?>
         }
 
         if ($allMatched) {
-            echo "<div>
-            <h2>Félicitations ! Vous avez gagné !</h2>
-            <button type='submit' class='restart'>Recommencer</button>
-            <a href='index.php'>Retour au menu</a>
-            </div>";
+            $move_amount = isset($_SESSION['move_count']) ? $_SESSION['move_count'] : 0;
             if (isset($_SESSION['user_id'])) {
                 $game = new Game();
                 $user_id = $_SESSION['user_id'];
-                $move_amount = isset($_SESSION['move_count']) ? $_SESSION['move_count'] : 0;
+
                 $pair_amount = $_SESSION['pairs'];
 
                 $game->save_score($user_id, $pair_amount, $move_amount);
@@ -119,5 +111,14 @@ session_start(); ?>
 
 
         ?>
+        <?php if ($allMatched) : ?>
+            <div>
+                <h2>Félicitations ! Vous avez gagné !</h2>
+                <button type='submit' class='restart'>Recommencer</button>
+                <a href='index.php'>Retour au menu</a>
+                <p><?php echo $_SESSION['pairs'] ?> paires</p>
+                <p>en <?php echo $move_amount ?> coups</p>
+            </div>
+        <?php endif ?>
     </form>
 </body>
